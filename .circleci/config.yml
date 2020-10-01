@@ -2,15 +2,12 @@ version: 2.1
 jobs:
   create_infrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - run:
           name: Ensure backend infrastructure exist
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name circleCIAws
+          command: echo "Hello"
 workflows:
   my_workflow:
     jobs:
