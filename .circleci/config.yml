@@ -10,7 +10,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file template.yml \
-              --stack-name udacityCircleCI
+              --stack-name circleCIAws
 workflows:
   my_workflow:
     jobs:
