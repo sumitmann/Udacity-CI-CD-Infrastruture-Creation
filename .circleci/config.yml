@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: smoke test.
-            command: |
+          name: smoke test
+          command: |
               URL="https://www.google.com/"
               if curl -s --head ${URL}
               then
