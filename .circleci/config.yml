@@ -5,14 +5,14 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run: echo ${CIRCLE_WORKFLOW_ID:0:7}
       - run:
           name: Create Stack
           command: |
             aws cloudformation deploy \
             --template-file bucket.yml \
             --stack-name "toproduction" \
-            --parameter-overrides pipelineID="toproduction"
+            --parameter-overrides PipelineID="toproduction"
+      - run: aws s3 sync . s3://"udacity-circle-ci-02" --delete
   promote_to_production:
     docker:
       - image: amazon/aws-cli
