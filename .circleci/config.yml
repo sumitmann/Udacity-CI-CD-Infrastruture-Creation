@@ -23,11 +23,11 @@ jobs:
             --template-file cloudformation.yml \
             --stack-name cloudfront \
             --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
-
-  workflows:
-      jobs:
-        - create_and_deploy_front_end
-        - promote_to_production:
-            requires:
-              - create_and_deploy_front_end
-
+workflows:
+  version: 1
+  production_pipe:
+    jobs:
+      - create_and_deploy_front_end
+      - promote_to_production:
+          requires:
+            - create_and_deploy_front_end
