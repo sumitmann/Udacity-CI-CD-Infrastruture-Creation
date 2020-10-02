@@ -7,11 +7,10 @@ jobs:
       - checkout
       - run:
           name: Run Fake Smoke Test
-          command: if curl -s --head "https://google.com" \
-                   then \
-                     echo "It worked!" \
-                   else \
-                     echo "It failed" \
+          command: if curl -s --head "https://google.com"; then
+                     echo "URL exists"
+                   else
+                     echo "URL does not exist"
                    fi
 workflows:
   my_workflow:
