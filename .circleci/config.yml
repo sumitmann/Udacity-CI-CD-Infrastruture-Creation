@@ -11,8 +11,8 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file bucket.yml \
-            --stack-name "${CIRCLE_WORKFLOW_ID:0:7}"
-            --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID:0:7}"
+            --stack-name "ABCD${CIRCLE_WORKFLOW_ID:0:7}"
+            --parameter-overrides PipelineID="ABCD${CIRCLE_WORKFLOW_ID:0:7}"
   promote_to_production:
     docker:
       - image: amazon/aws-cli
@@ -22,7 +22,7 @@ jobs:
           aws cloudformation deploy \
           --template-file cloudfront.yml \
           --stack-name production-distro \
-          --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
+          --parameter-overrides PipelineID="ABCD${CIRCLE_WORKFLOW_ID}"
   get_last_deployment_id:
     working_directory: ~/tmp
     docker:
