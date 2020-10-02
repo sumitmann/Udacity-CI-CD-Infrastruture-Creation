@@ -5,11 +5,16 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: if curl -s --head "https://google.com"; then
-              echo "URL exists"
-               else
-              echo "URL does not exist"
-               fi
+      - run:
+          name: smoke test.
+            command: |
+              URL="https://www.google.com/"
+              if curl -s --head ${URL}
+              then
+               return 0
+              else
+               return 1
+              fi
 workflows:
   my_workflow:
     jobs:
