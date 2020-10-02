@@ -1,22 +1,19 @@
 version: 2.1
 jobs:
-  create_infrastructure:
+  fake_smoke_test:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "99:f0:fa:49:b5:cb:eb:d2:b8:69:d0:d3:28:74:25:9e"
       - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible
-      - run:
-          name: Configure server
-          command: |
-            ansible-playbook -i inventory.txt playbook.yml
+          name: Run Fake Smoke Test
+          command: if curl -s --head "https://google.com" 
+                   then
+                     echo "It worked!"
+                   else
+                     echo "It failed"
+                   fi
 workflows:
   my_workflow:
     jobs:
-      - create_infrastructure
+      - fake_smoke_test
