@@ -2,7 +2,7 @@ Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "udacity-circle-ci"
+      BucketName: !Sub "udacity-circle-ci-02"
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
