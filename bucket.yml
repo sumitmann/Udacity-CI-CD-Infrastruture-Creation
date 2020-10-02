@@ -1,11 +1,11 @@
 Parameters:
-  NAME:
+  NAME: "udacity-circle-ci"
     Type: String
 Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "udacity-circle-ci"
+      BucketName: !Sub "${NAME}"
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
