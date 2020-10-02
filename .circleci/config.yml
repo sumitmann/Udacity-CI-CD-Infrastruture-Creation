@@ -45,10 +45,11 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/tmp
-      - run: cat inventory.txt
+      - run: value=cat inventory.txt
+      - run: echo $value
       - run: |
-          aws s3 rm "s3://${OldPipelineID}" --recursive
-          aws cloudformation delete-stack --stack-name "${PreviousPipelineID}"
+          aws s3 rm "s3://udacity-circle-ci-02" --recursive
+          aws cloudformation delete-stack --stack-name "toproduction"
 workflows:
   version: 1
   production_pipe:
